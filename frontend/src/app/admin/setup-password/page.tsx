@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { PublicLayout } from '@/components/layout/Layout';
 import { SetupPasswordForm } from '@/components/forms/Forms';
 import { apiClient } from '@/services/apiClient';
-import { useAuthStore } from '@/hooks/useAuthStore';
+
 import { showToast } from '@/utils/toast';
 import { useRouter } from 'next/navigation';
 
@@ -12,8 +12,7 @@ export default function SetupPasswordPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     
-    // In a real app we'd also check if the user is logged in
-    const admin = useAuthStore(state => state.admin);
+
 
     const handleSetupPassword = async (data: { currentPassword: string; newPassword: string }) => {
         setIsLoading(true);

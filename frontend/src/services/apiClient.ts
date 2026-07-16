@@ -66,6 +66,8 @@ export const apiClient = {
         axiosInstance.post('/vote', data),
     getVotingStatus: () =>
         axiosInstance.get('/vote/status'),
+    getMyVotes: (data: { browserFingerprint: string, cookieToken: string | null, localStorageToken: string | null }) =>
+        axiosInstance.post('/vote/my-votes', data),
 
     // Settings endpoints
     getSettings: () =>

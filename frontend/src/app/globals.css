@@ -10,14 +10,23 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  @apply antialiased;
-}
-
 @layer components {
   .container-max {
     @apply max-w-7xl mx-auto px-6;
   }
+  
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(230, 198, 135, 0.3);
+  }
+}
+
+body {
+  @apply antialiased bg-primary-bg text-white min-h-screen selection:bg-gold selection:text-black;
+  background-image: radial-gradient(circle at 50% 0%, rgba(30, 25, 15, 0.4) 0%, transparent 60%);
 }
 
 @keyframes slideIn {

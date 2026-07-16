@@ -116,3 +116,33 @@ exports.getVotingStatus = async (req, res, next) => {
         next(error);
     }
 };
+
+// Get user votes
+exports.getMyVotes = async (req, res, next) => {
+    try {
+        const { browserFingerprint, cookieToken, localStorageToken } = req.body;
+
+        if (!browserFingerprint) {
+            return res.json({ success: true, data: {} });
+        }
+
+        const votes = await voteService.getDeviceVotes(
+            browserFingerprint,
+            cookieToken,
+            localStorageToken
+        );
+
+        // Convert array of { category_id, creator_id } to Record<categoryId, creatorId>
+        const votedCategories = votes.reduce((acc, vote) => {
+            acc[vote.category_id] = vote.creator_id;
+            return acc;
+        }, {});
+
+        res.json({
+            success: true,
+            data: votedCategories
+        });
+    } catch (error) {
+        next(error);
+    }
+};

@@ -7,11 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-bg': '#0B0B0D',
-        'secondary-bg': '#161616',
-        'card-bg': 'rgba(255,255,255,0.05)',
-        'gold': '#D4AF37',
-        'gold-hover': '#F5C84C',
+        'primary-bg': '#030303',
+        'secondary-bg': '#0a0a0a',
+        'card-bg': 'rgba(255,255,255,0.03)',
+        'gold': '#E6C687',
+        'gold-hover': '#F5DCA8',
+        'gold-dark': '#B59554',
         'border': 'rgba(255,255,255,0.08)',
         'text-light': '#CFCFCF',
         'text-medium': '#8F8F8F',

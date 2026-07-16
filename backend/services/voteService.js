@@ -142,11 +142,37 @@ const recordVote = async (categoryId, creatorId, voteDeviceId, ipAddress, userAg
     }
 };
 
+// Get all votes for a device
+const getDeviceVotes = async (browserFingerprint, cookieToken, localStorageToken) => {
+    const connection = await pool.getConnection();
+    
+    try {
+        const [devices] = await connection.query(
+            'SELECT id FROM vote_devices WHERE browser_fingerprint = ? OR cookie_token = ? OR local_storage_token = ? LIMIT 1',
+            [browserFingerprint, cookieToken, localStorageToken]
+        );
+
+        if (devices.length === 0) {
+            return [];
+        }
+
+        const [votes] = await connection.query(
+            'SELECT category_id, creator_id FROM votes WHERE vote_device_id = ?',
+            [devices[0].id]
+        );
+
+        return votes;
+    } finally {
+        connection.release();
+    }
+};
+
 module.exports = {
     getOrCreateVoteDevice,
     hasDeviceVotedInCategory,
     getActiveCategories,
     getCategoryWithCreators,
     getCreatorsByCategory,
-    recordVote
+    recordVote,
+    getDeviceVotes
 };

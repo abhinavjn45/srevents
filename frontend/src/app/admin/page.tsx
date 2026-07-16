@@ -5,6 +5,7 @@ import { AdminLayout } from '@/components/layout/Layout';
 import { DashboardCard } from '@/components/cards/Cards';
 import { apiClient } from '@/services/apiClient';
 import { showToast } from '@/utils/toast';
+import { Vote, BarChart3, Trophy, Star, Flag } from 'lucide-react';
 
 export default function AdminDashboard() {
     const [dashboard, setDashboard] = useState<any>(null);
@@ -39,27 +40,27 @@ export default function AdminDashboard() {
                     <DashboardCard
                         title="Total Votes"
                         value={dashboard?.totalVotes || 0}
-                        icon="🗳️"
+                        icon={<Vote className="w-8 h-8" />}
                     />
                     <DashboardCard
                         title="Today's Votes"
                         value={dashboard?.todayVotes || 0}
-                        icon="📊"
+                        icon={<BarChart3 className="w-8 h-8" />}
                     />
                     <DashboardCard
                         title="Categories"
                         value={dashboard?.categories || 0}
-                        icon="🏆"
+                        icon={<Trophy className="w-8 h-8" />}
                     />
                     <DashboardCard
                         title="Creators"
                         value={dashboard?.creators || 0}
-                        icon="⭐"
+                        icon={<Star className="w-8 h-8" />}
                     />
                     <DashboardCard
                         title="Flagged Votes"
                         value={dashboard?.flaggedVotes || 0}
-                        icon="🚩"
+                        icon={<Flag className="w-8 h-8" />}
                     />
                 </div>
             </div>

@@ -20,33 +20,33 @@ const updateSettings = async (data) => {
         const updates = [];
         const values = [];
 
-        if (data.eventName) {
+        if (data.event_name !== undefined) {
             updates.push('event_name = ?');
-            values.push(data.eventName);
+            values.push(data.event_name);
         }
-        if (data.eventLogo) {
+        if (data.event_logo !== undefined) {
             updates.push('event_logo = ?');
-            values.push(data.eventLogo);
+            values.push(data.event_logo);
         }
-        if (data.eventDescription) {
+        if (data.event_description !== undefined) {
             updates.push('event_description = ?');
-            values.push(data.eventDescription);
+            values.push(data.event_description);
         }
-        if (data.globalVotingEnabled !== undefined) {
+        if (data.global_voting_enabled !== undefined) {
             updates.push('global_voting_enabled = ?');
-            values.push(data.globalVotingEnabled ? 1 : 0);
+            values.push(data.global_voting_enabled ? 1 : 0);
         }
-        if (data.votingStart) {
+        if (data.voting_start !== undefined) {
             updates.push('voting_start = ?');
-            values.push(data.votingStart);
+            values.push(data.voting_start);
         }
-        if (data.votingEnd) {
+        if (data.voting_end !== undefined) {
             updates.push('voting_end = ?');
-            values.push(data.votingEnd);
+            values.push(data.voting_end);
         }
-        if (data.footerText) {
+        if (data.footer_text !== undefined) {
             updates.push('footer_text = ?');
-            values.push(data.footerText);
+            values.push(data.footer_text);
         }
 
         if (updates.length === 0) {

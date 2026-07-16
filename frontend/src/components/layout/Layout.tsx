@@ -3,16 +3,17 @@ import { Toaster } from '../ui/Toast';
 
 interface LayoutProps {
     children: React.ReactNode;
+    showFooter?: boolean;
 }
 
-export const PublicLayout: React.FC<LayoutProps> = ({ children }) => {
+export const PublicLayout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
     return (
         <div className="min-h-screen bg-primary-bg text-white">
             <Navbar />
             <main>
                 {children}
             </main>
-            <Footer />
+            {showFooter && <Footer />}
             <Toaster />
         </div>
     );
@@ -35,16 +36,27 @@ export const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="sticky top-0 z-50 bg-secondary-bg border-b border-border">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                <div className="text-2xl font-bold text-gold">SR Events</div>
-                <div className="flex items-center gap-8">
-                    <a href="#" className="text-white hover:text-gold transition">Vote</a>
-                    <a href="#" className="text-white hover:text-gold transition">About</a>
-                    <a href="#" className="text-white hover:text-gold transition">FAQ</a>
+        <div className="fixed top-0 left-0 right-0 z-50 pt-6 px-4 md:px-8">
+            <nav className="max-w-7xl mx-auto glass-panel rounded-full px-6 py-4 flex items-center justify-between transition-all duration-300">
+                <div className="text-2xl font-bold font-playfair tracking-wider">
+                    <span className="text-white">SR</span> <span className="text-gold">Events</span>
                 </div>
-            </div>
-        </nav>
+                <div className="hidden md:flex items-center gap-10 text-sm tracking-widest uppercase">
+                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
+                        VOTE
+                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
+                    </a>
+                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
+                        ABOUT
+                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
+                    </a>
+                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
+                        FAQ
+                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
+                    </a>
+                </div>
+            </nav>
+        </div>
     );
 };
 
@@ -76,9 +88,13 @@ const TopBar: React.FC = () => {
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-secondary-bg border-t border-border py-8">
-            <div className="max-w-7xl mx-auto px-6 text-center text-text-medium">
-                <p>&copy; 2024 SR Events. All rights reserved.</p>
+        <footer className="bg-secondary-bg border-t border-white/5 py-12 mt-12">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+                <p className="text-white/60 tracking-[0.3em] uppercase text-[10px] font-semibold mb-3">Proudly Sponsored By</p>
+                <div className="text-xl font-bold font-playfair tracking-widest text-gold mb-1">
+                    Connecting Scripts
+                </div>
+                <p className="text-gold/70 tracking-[0.2em] uppercase text-[8px] font-medium">Digital Marketing Agency</p>
             </div>
         </footer>
     );

@@ -68,6 +68,8 @@ export const apiClient = {
         axiosInstance.get('/vote/status'),
     getMyVotes: (data: { browserFingerprint: string, cookieToken: string | null, localStorageToken: string | null }) =>
         axiosInstance.post('/vote/my-votes', data),
+    getLiveLeaderboard: () =>
+        axiosInstance.get('/vote/live-leaderboard-x9f2a'),
 
     // Settings endpoints
     getSettings: () =>

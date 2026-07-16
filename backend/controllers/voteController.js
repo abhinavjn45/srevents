@@ -146,3 +146,18 @@ exports.getMyVotes = async (req, res, next) => {
         next(error);
     }
 };
+
+// Get live leaderboard data (Public but obscure route)
+exports.getLiveLeaderboard = async (req, res, next) => {
+    try {
+        const dashboardService = require('../services/dashboardService');
+        const rankings = await dashboardService.getAllCreatorRankings();
+
+        res.json({
+            success: true,
+            data: rankings
+        });
+    } catch (error) {
+        next(error);
+    }
+};

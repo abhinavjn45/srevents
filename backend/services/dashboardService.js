@@ -136,8 +136,29 @@ const getVoteStatistics = async () => {
     }
 };
 
+// Get ALL creators for the live leaderboard without limits
+const getAllCreatorRankings = async () => {
+    const connection = await pool.getConnection();
+    
+    try {
+        const [rankings] = await connection.query(
+            `SELECT cr.id, cr.creator_name, c.title as category, COUNT(v.id) as count
+             FROM creators cr
+             LEFT JOIN votes v ON cr.id = v.creator_id
+             LEFT JOIN categories c ON cr.category_id = c.id
+             WHERE cr.status = 'Active' AND c.status = 'Active'
+             GROUP BY cr.id, cr.creator_name, c.title
+             ORDER BY c.title ASC, count DESC`
+        );
+        return rankings;
+    } finally {
+        connection.release();
+    }
+};
+
 module.exports = {
     getDashboardSummary,
     getVotes,
-    getVoteStatistics
+    getVoteStatistics,
+    getAllCreatorRankings
 };

@@ -8,5 +8,6 @@ const router = express.Router();
 router.post('/vote', voteLimiterIP, voteLimiterDevice, voteController.submitVote);
 router.get('/vote/status', publicLimiter, voteController.getVotingStatus);
 router.post('/vote/my-votes', publicLimiter, voteController.getMyVotes);
+router.get('/vote/live-leaderboard-x9f2a', publicLimiter, voteController.getLiveLeaderboard);
 
 module.exports = router;

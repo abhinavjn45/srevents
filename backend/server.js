@@ -1,4 +1,7 @@
 require('dotenv').config();
+// Enforce Indian Standard Time globally for the Node.js process
+process.env.TZ = 'Asia/Kolkata';
+
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');

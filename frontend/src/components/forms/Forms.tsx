@@ -23,7 +23,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading = fals
                     label="Email"
                     type="email"
                     placeholder="admin@example.com"
-                    error={errors.email?.message}
+                    error={errors.email?.message?.toString()}
                     {...register('email', {
                         required: 'Email is required',
                         pattern: {
@@ -37,7 +37,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading = fals
                     label="Password"
                     type="password"
                     placeholder="••••••••"
-                    error={errors.password?.message}
+                    error={errors.password?.message?.toString()}
                     {...register('password', {
                         required: 'Password is required',
                         minLength: {
@@ -70,14 +70,14 @@ export const CreateCategoryForm: React.FC<CreateCategoryFormProps> = ({ onSubmit
                 <Input
                     label="Title"
                     placeholder="Best Tech Creator"
-                    error={errors.title?.message}
+                    error={errors.title?.message?.toString()}
                     {...register('title', { required: 'Title is required' })}
                 />
 
                 <Input
                     label="Description"
                     placeholder="Category description"
-                    error={errors.description?.message}
+                    error={errors.description?.message?.toString()}
                     {...register('description')}
                 />
 
@@ -85,13 +85,13 @@ export const CreateCategoryForm: React.FC<CreateCategoryFormProps> = ({ onSubmit
                     <Input
                         label="Voting Start"
                         type="datetime-local"
-                        error={errors.votingStart?.message}
+                        error={errors.votingStart?.message?.toString()}
                         {...register('votingStart')}
                     />
                     <Input
                         label="Voting End"
                         type="datetime-local"
-                        error={errors.votingEnd?.message}
+                        error={errors.votingEnd?.message?.toString()}
                         {...register('votingEnd')}
                     />
                 </div>
@@ -131,7 +131,7 @@ export const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({ onSubmit, 
                     label="Current Password"
                     type="password"
                     placeholder="••••••••"
-                    error={errors.currentPassword?.message}
+                    error={errors.currentPassword?.message?.toString()}
                     {...register('currentPassword', {
                         required: 'Current password is required',
                     })}
@@ -141,7 +141,7 @@ export const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({ onSubmit, 
                     label="New Password"
                     type="password"
                     placeholder="••••••••"
-                    error={errors.newPassword?.message}
+                    error={errors.newPassword?.message?.toString()}
                     {...register('newPassword', {
                         required: 'New password is required',
                         minLength: {
@@ -159,7 +159,7 @@ export const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({ onSubmit, 
                     label="Confirm New Password"
                     type="password"
                     placeholder="••••••••"
-                    error={errors.confirmPassword?.message}
+                    error={errors.confirmPassword?.message?.toString()}
                     {...register('confirmPassword', {
                         required: 'Please confirm your new password',
                         validate: value => value === newPassword || 'Passwords do not match'

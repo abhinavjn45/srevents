@@ -12,7 +12,7 @@ interface ProtectedLayoutProps {
 export function ProtectedLayout({ children }: ProtectedLayoutProps) {
     const router = useRouter();
     const isLoggedIn = useAuthStore(state => state.isLoggedIn);
-    const [mounted, setMounted] = useAuthStore((state) => [state.admin !== null]) as any;
+
 
     useEffect(() => {
         if (!isLoggedIn) {

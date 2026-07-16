@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button } from '../ui/Base';
-import { useCountdown } from '@/hooks/useCountdown';
+
 
 interface CategoryCardProps {
     id: number;

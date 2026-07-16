@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+
 
 // SECURITY FIX: Enhanced browser fingerprinting with multiple entropy sources
 export const generateBrowserFingerprint = (): string => {
@@ -103,7 +103,7 @@ const generateCanvasFingerprint = (): string => {
 const generateWebGLFingerprint = (): string => {
     try {
         const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext;
         
         if (!gl) return 'webgl-unavailable';
         

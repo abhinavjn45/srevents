@@ -15,7 +15,7 @@ export default function Home() {
     const [categories, setCategories] = useState<any[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<any>(null);
     const [creators, setCreators] = useState<any[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+
     const [turnstileToken, setTurnstileToken] = useState<string>('');
     const turnstileRef = useRef<TurnstileInstance>(null);
 
@@ -62,9 +62,9 @@ export default function Home() {
             return;
         }
 
-        setIsLoading(true);
+
         try {
-            const response = await apiClient.submitVote({
+            await apiClient.submitVote({
                 categoryId,
                 creatorId,
                 browserFingerprint: generateBrowserFingerprint(),
@@ -78,7 +78,7 @@ export default function Home() {
             const message = error.response?.data?.message || 'Failed to submit vote';
             showToast(message, 'error');
         } finally {
-            setIsLoading(false);
+
             // Always reset turnstile after a vote (successful or failed) so the user gets a fresh token for the next vote
             turnstileRef.current?.reset();
         }

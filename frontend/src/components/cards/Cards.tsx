@@ -46,6 +46,8 @@ interface CreatorCardProps {
     youtube?: string;
     onVote: (categoryId: number, creatorId: number) => void;
     categoryId: number;
+    isVoting?: boolean;
+    isCurrentCreatorVoting?: boolean;
 }
 
 export const CreatorCard: React.FC<CreatorCardProps> = ({
@@ -57,7 +59,9 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
     instagram,
     youtube,
     onVote,
-    categoryId
+    categoryId,
+    isVoting,
+    isCurrentCreatorVoting
 }) => {
     return (
         <Card className="group hover:border-gold transition">
@@ -88,8 +92,15 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
                 )}
             </div>
 
-            <Button variant="primary" size="sm" className="w-full" onClick={() => onVote(categoryId, id)}>
-                Vote
+            <Button 
+                variant="primary" 
+                size="sm" 
+                className="w-full" 
+                onClick={() => onVote(categoryId, id)}
+                disabled={isVoting}
+                isLoading={isCurrentCreatorVoting}
+            >
+                {isCurrentCreatorVoting ? 'Adding your Vote...' : 'Vote'}
             </Button>
         </Card>
     );

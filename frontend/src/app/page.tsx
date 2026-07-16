@@ -15,6 +15,8 @@ export default function Home() {
     const [categories, setCategories] = useState<any[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<any>(null);
     const [creators, setCreators] = useState<any[]>([]);
+    const [isVoting, setIsVoting] = useState(false);
+    const [votingCreatorId, setVotingCreatorId] = useState<number | null>(null);
 
     const [turnstileToken, setTurnstileToken] = useState<string>('');
     const turnstileRef = useRef<TurnstileInstance>(null);
@@ -62,6 +64,8 @@ export default function Home() {
             return;
         }
 
+        setIsVoting(true);
+        setVotingCreatorId(creatorId);
 
         try {
             await apiClient.submitVote({
@@ -78,7 +82,8 @@ export default function Home() {
             const message = error.response?.data?.message || 'Failed to submit vote';
             showToast(message, 'error');
         } finally {
-
+            setIsVoting(false);
+            setVotingCreatorId(null);
             // Always reset turnstile after a vote (successful or failed) so the user gets a fresh token for the next vote
             turnstileRef.current?.reset();
         }
@@ -174,6 +179,8 @@ export default function Home() {
                                 youtube={creator.youtube_url}
                                 categoryId={selectedCategory.id}
                                 onVote={handleVote}
+                                isVoting={isVoting}
+                                isCurrentCreatorVoting={votingCreatorId === creator.id}
                             />
                         ))}
                     </div>

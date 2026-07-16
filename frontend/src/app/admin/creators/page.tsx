@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { AdminLayout } from '@/components/layout/Layout';
-import { Card, Button, Input } from '@/components/ui/Base';
+import { Button, Input } from '@/components/ui/Base';
 import { CreateCreatorForm } from '@/components/forms/Forms';
 import { apiClient } from '@/services/apiClient';
 import { showToast } from '@/utils/toast';

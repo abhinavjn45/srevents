@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { Trophy } from 'lucide-react';
 import { apiClient } from '@/services/apiClient';
 
 interface CreatorRank {
@@ -11,7 +12,7 @@ interface CreatorRank {
 }
 
 const CategoryCard = ({ category, creators, isMain }: { category: string, creators: CreatorRank[], isMain: boolean }) => (
-    <div className={`glass-panel border flex flex-col min-h-0 ${isMain ? 'p-4 sm:p-5 h-full border-gold/30 shadow-[0_0_30px_rgba(255,215,0,0.1)] transform scale-[1.02] rounded-3xl' : 'p-3 border-white/5 bg-white/[0.02] rounded-2xl'}`}>
+    <div className={`glass-panel border flex flex-col min-h-0 ${isMain ? 'p-4 sm:p-5 w-full max-h-full border-gold/30 shadow-[0_0_30px_rgba(255,215,0,0.1)] transform scale-[1.02] rounded-3xl' : 'p-3 border-white/5 bg-white/[0.02] rounded-2xl w-full max-h-full'}`}>
         <h2 className={`${isMain ? 'text-2xl sm:text-3xl text-gold mb-3' : 'text-lg text-white mb-2'} font-bold font-playfair border-b border-white/10 pb-2 capitalize shrink-0 truncate text-center`}>
             {category}
         </h2>
@@ -31,7 +32,11 @@ const CategoryCard = ({ category, creators, isMain }: { category: string, creato
                                 ? `w-6 h-6 text-xs ${index === 0 ? 'bg-gold text-black shadow-[0_0_10px_rgba(255,215,0,0.5)]' : 'bg-white/5 text-white'}` 
                                 : `w-5 h-5 text-[10px] ${index === 0 ? 'bg-gold text-black shadow-[0_0_5px_rgba(255,215,0,0.5)]' : 'bg-white/5 text-white'}`
                         }`}>
-                            {index + 1}
+                            {index === 0 ? (
+                                <Trophy className={isMain ? "w-3.5 h-3.5" : "w-3 h-3"} />
+                            ) : (
+                                index + 1
+                            )}
                         </div>
                         <span className={`${isMain ? 'text-base sm:text-lg font-semibold' : 'text-sm sm:text-base font-medium'} text-white/90 truncate`}>
                             {creator.creator_name}
@@ -117,48 +122,39 @@ export default function LiveLeaderboardPage() {
             </div>
 
             <div className="relative z-10 w-full max-w-[98vw] mx-auto flex-1 flex flex-col min-h-0">
-                <div className="text-center mb-3 shrink-0 animate-fadeIn">
-                    <h1 className="text-3xl sm:text-4xl font-bold font-playfair text-gold text-glow mb-1">
+                <div className="text-center mb-3 shrink-0 animate-fadeIn flex flex-col items-center">
+                    <h1 className="text-3xl sm:text-4xl font-bold font-playfair text-gold text-glow mb-2">
                         Live Leaderboard
                     </h1>
-                    {lastUpdated && (
-                        <p className="text-white/50 text-xs sm:text-sm tracking-widest uppercase">
-                            Last Updated: {lastUpdated.toLocaleTimeString()}
-                        </p>
-                    )}
+                    <div className="glass-panel px-4 py-1.5 rounded-full border border-gold/20 flex items-center gap-2 shadow-[0_0_15px_rgba(255,215,0,0.1)] inline-flex">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
+                        <span className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/80">
+                            Auto-refreshing in {refreshCountdown}s
+                        </span>
+                    </div>
                 </div>
 
                 <div className="flex gap-6 w-full h-full overflow-hidden">
                     {/* Left Column */}
-                    <div className="flex-1 flex flex-col gap-4 min-h-0 z-10">
+                    <div className="flex-1 flex flex-col justify-center gap-4 min-h-0 z-10">
                         {leftCategories.map(([category, creators]) => (
                             <CategoryCard key={category} category={category} creators={creators} isMain={false} />
                         ))}
                     </div>
 
                     {/* Center Column (Highlighted) */}
-                    <div className="flex-[1.5] flex flex-col justify-center gap-4 min-h-0 py-4 sm:py-8 z-20">
+                    <div className="flex-[1.5] flex flex-col justify-center items-center gap-4 min-h-0 py-4 sm:py-8 z-20">
                         {mainCategory && (
                             <CategoryCard category={mainCategory[0]} creators={mainCategory[1]} isMain={true} />
                         )}
                     </div>
 
                     {/* Right Column */}
-                    <div className="flex-1 flex flex-col gap-4 min-h-0 z-10">
+                    <div className="flex-1 flex flex-col justify-center gap-4 min-h-0 z-10">
                         {rightCategories.map(([category, creators]) => (
                             <CategoryCard key={category} category={category} creators={creators} isMain={false} />
                         ))}
                     </div>
-                </div>
-            </div>
-
-            {/* Floating Refresh Indicator */}
-            <div className="fixed bottom-4 right-4 z-50">
-                <div className="glass-panel px-4 py-2 rounded-full border border-gold/20 flex items-center gap-2 shadow-[0_0_15px_rgba(255,215,0,0.1)]">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
-                    <span className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/80">
-                        Refresh: {refreshCountdown}s
-                    </span>
                 </div>
             </div>
         </div>

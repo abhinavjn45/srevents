@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { PublicLayout } from '@/components/layout/Layout';
 import { CategoryCard, CreatorCard } from '@/components/cards/Cards';
-import { Button, Card } from '@/components/ui/Base';
+import { Button } from '@/components/ui/Base';
 import { useCountdown } from '@/hooks/useCountdown';
 import { apiClient } from '@/services/apiClient';
 import { generateBrowserFingerprint, getCookieToken, getLocalStorageToken } from '@/utils/fingerprint';

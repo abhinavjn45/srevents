@@ -22,6 +22,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         <Card className="group hover:border-gold transition cursor-pointer" onClick={() => onVote(id)}>
             {image && (
                 <div className="aspect-video bg-secondary-bg rounded-16 mb-4 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={image} alt={title} className="w-full h-full object-cover" />
                 </div>
             )}
@@ -62,6 +63,7 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
         <Card className="group hover:border-gold transition">
             {image && (
                 <div className="aspect-square bg-secondary-bg rounded-16 mb-4 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={image} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition" />
                 </div>
             )}

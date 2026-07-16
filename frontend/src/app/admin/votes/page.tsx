@@ -13,6 +13,7 @@ export default function VotesPage() {
 
     useEffect(() => {
         loadVotes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pagination.page]);
 
     const loadVotes = async () => {

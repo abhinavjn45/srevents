@@ -41,20 +41,7 @@ const Navbar: React.FC = () => {
                 <div className="text-2xl font-bold font-playfair tracking-wider">
                     <span className="text-white">SR</span> <span className="text-gold">Events</span>
                 </div>
-                <div className="hidden md:flex items-center gap-10 text-sm tracking-widest uppercase">
-                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
-                        VOTE
-                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
-                    </a>
-                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
-                        ABOUT
-                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
-                    </a>
-                    <a href="#" className="text-text-light hover:text-white relative group transition-colors">
-                        FAQ
-                        <span className="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-0 group-hover:opacity-100"></span>
-                    </a>
-                </div>
+                {/* Removed navigation links */}
             </nav>
         </div>
     );

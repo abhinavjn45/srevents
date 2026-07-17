@@ -54,7 +54,6 @@ const CategoryCard = ({ category, creators, isMain }: { category: string, creato
 export default function LiveLeaderboardPage() {
     const [leaderboard, setLeaderboard] = useState<Record<string, CreatorRank[]>>({});
     const [refreshCountdown, setRefreshCountdown] = useState(30);
-    const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
     const loadData = async () => {
         try {
@@ -69,7 +68,6 @@ export default function LiveLeaderboardPage() {
             }, {} as Record<string, CreatorRank[]>);
             
             setLeaderboard(grouped);
-            setLastUpdated(new Date());
             setRefreshCountdown(30);
         } catch (error) {
             console.error('Failed to fetch live leaderboard:', error);

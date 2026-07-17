@@ -97,7 +97,7 @@ const getCategoryWithCreators = async (categoryId) => {
         }
 
         const [creators] = await connection.query(
-            'SELECT * FROM creators WHERE category_id = ? AND status = "Active" ORDER BY display_order ASC',
+            'SELECT * FROM creators WHERE category_id = ? AND status = "Active" ORDER BY RAND()',
             [categoryId]
         );
 
@@ -116,7 +116,7 @@ const getCreatorsByCategory = async (categoryId) => {
     
     try {
         const [creators] = await connection.query(
-            'SELECT * FROM creators WHERE category_id = ? AND status = "Active" ORDER BY display_order ASC',
+            'SELECT * FROM creators WHERE category_id = ? AND status = "Active" ORDER BY RAND()',
             [categoryId]
         );
         return creators;

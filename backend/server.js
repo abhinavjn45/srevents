@@ -57,6 +57,9 @@ const dashboardController = require('./controllers/dashboardController');
 
 const app = express();
 
+// Trust proxy to get real IP behind Nginx/Cloudflare/Load balancers
+app.set('trust proxy', true);
+
 // SECURITY FIX: Enhanced CORS configuration
 const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3000').split(',').map(o => o.trim());
 

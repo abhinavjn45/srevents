@@ -1,12 +1,9 @@
 const rateLimit = require('express-rate-limit');
 
-const publicLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100,
-    message: 'Too many requests from this IP',
-    standardHeaders: true,
-    legacyHeaders: false
-});
+// IP rate limits disabled per user request
+const passThrough = (req, res, next) => next();
+
+const publicLimiter = passThrough;
 
 // Device-level rate limit (strict: 15 per minute)
 const voteLimiterDevice = rateLimit({
@@ -25,15 +22,8 @@ const voteLimiterDevice = rateLimit({
     legacyHeaders: false
 });
 
-// IP-level rate limit (generous for CGNAT: 150 per minute)
-const voteLimiterIP = rateLimit({
-    windowMs: 1 * 60 * 1000, // 1 minute
-    max: 150,
-    keyGenerator: (req) => req.ip,
-    message: 'Too many vote attempts from this network',
-    standardHeaders: true,
-    legacyHeaders: false
-});
+// IP-level rate limit disabled per user request
+const voteLimiterIP = passThrough;
 
 const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes

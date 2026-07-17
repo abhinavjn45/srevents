@@ -18,7 +18,7 @@ const getAllCreators = async (categoryId = null) => {
             params.push(categoryId);
         }
 
-        query += ` GROUP BY cr.id ORDER BY cr.display_order ASC`;
+        query += ` GROUP BY cr.id ORDER BY RAND()`;
 
         const [creators] = await connection.query(query, params);
         return creators;

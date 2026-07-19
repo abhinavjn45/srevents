@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { PublicLayout } from '@/components/layout/Layout';
-import Link from 'next/link';
 import { useCountdown } from '@/hooks/useCountdown';
 import { apiClient } from '@/services/apiClient';
 

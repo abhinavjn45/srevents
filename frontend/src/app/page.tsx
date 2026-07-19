@@ -2,14 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { PublicLayout } from '@/components/layout/Layout';
-import { useCountdown } from '@/hooks/useCountdown';
 import { apiClient } from '@/services/apiClient';
 
 export default function Home() {
     const [settings, setSettings] = useState<any>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    const countdown = useCountdown(settings?.voting_start, settings?.voting_end);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         // Calculate offset from center of screen (-25 to 25)

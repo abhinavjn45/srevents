@@ -70,53 +70,14 @@ export default function Home() {
                         {settings?.event_description || 'Celebrate and honor the most exceptional creators shaping our digital future.'}
                     </p>
 
-                    {/* Countdown */}
-                    {settings?.voting_end && countdown.phase !== 'ENDED' && (
-                        <div className="mb-6 sm:mb-8 flex flex-col items-center gap-3 sm:gap-4">
-                            <p className="text-gold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-xs sm:text-sm font-semibold">
-                                {countdown.phase === 'BEFORE_START' ? 'Voting starts in' : 'Voting ends in'}
-                            </p>
-                            <div className="flex justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 px-2">
-                            <div className="glass-panel rounded-xl sm:rounded-2xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-28 lg:h-32 flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
-                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-1">{countdown.days}</div>
-                                <p className="text-gold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest">Days</p>
-                            </div>
-                            <div className="glass-panel rounded-xl sm:rounded-2xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-28 lg:h-32 flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
-                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-1">{countdown.hours}</div>
-                                <p className="text-gold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest">Hours</p>
-                            </div>
-                            <div className="glass-panel rounded-xl sm:rounded-2xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-28 lg:h-32 flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
-                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-1">{countdown.minutes}</div>
-                                <p className="text-gold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest">Mins</p>
-                            </div>
-                            <div className="glass-panel rounded-xl sm:rounded-2xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-28 lg:h-32 flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
-                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-1">{countdown.seconds}</div>
-                                <p className="text-gold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest">Secs</p>
-                            </div>
-                        </div>
-                        </div>
-                    )}
-
-                    {countdown.phase === 'ENDED' && (
-                        <div className="mb-8 p-6 glass-panel border border-red-500/50 rounded-2xl max-w-sm mx-auto">
-                            <p className="text-red-400 text-lg font-semibold tracking-widest uppercase">Voting has ended</p>
-                        </div>
-                    )}
-
-                    <div className="flex justify-center items-center px-4">
-                        <Link 
-                            href="/vote"
-                            className="relative group px-8 py-3 sm:px-12 sm:py-4 bg-black/40 backdrop-blur-md overflow-hidden rounded-full border border-gold/30 hover:border-gold/80 hover:shadow-[0_0_40px_rgba(230,198,135,0.2)] transition-all duration-500 mt-2 sm:mt-4 inline-block"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
-                            <span className="relative text-gold font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm group-hover:text-white transition-colors duration-300 flex items-center gap-2 sm:gap-3">
-                                {countdown.phase === 'BEFORE_START' ? 'See Nominees' : 'Start Voting'}
-                                <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0">
-                                    →
-                                </span>
-                            </span>
-                        </Link>
+                    {/* Event Results Notice */}
+                    <div className="mb-6 sm:mb-8 p-6 sm:p-8 glass-panel border border-gold/30 rounded-2xl max-w-lg mx-auto backdrop-blur-md bg-black/40 shadow-[0_0_30px_rgba(212,175,55,0.15)] transform hover:scale-105 transition-transform duration-500">
+                        <p className="text-gold text-base sm:text-xl font-semibold tracking-[0.15em] uppercase text-center leading-relaxed drop-shadow-md">
+                            Results will be Announced<br/>today at the Event
+                        </p>
                     </div>
+
+
                 </div>
             </section>
 

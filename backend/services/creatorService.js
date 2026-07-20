@@ -5,11 +5,7 @@ const getAllCreators = async (categoryId = null) => {
     const connection = await pool.getConnection();
     
     try {
-        let query = `SELECT 
-                        cr.*,
-                        COUNT(v.id) as vote_count
-                     FROM creators cr
-                     LEFT JOIN votes v ON cr.id = v.creator_id`;
+        let query = `SELECT cr.* FROM creators cr`;
         
         const params = [];
 
@@ -18,7 +14,7 @@ const getAllCreators = async (categoryId = null) => {
             params.push(categoryId);
         }
 
-        query += ` GROUP BY cr.id ORDER BY RAND()`;
+        query += ` ORDER BY RAND()`;
 
         const [creators] = await connection.query(query, params);
         return creators;
